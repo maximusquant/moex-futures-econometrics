@@ -19,7 +19,7 @@ import os
 TICKER = "MX"
 START_DATE = "2022-09-01"
 END_DATE   = "2026-04-18"
-OUTPUT_FILE = "MIX_OI_daily_CORRECT.csv"
+OUTPUT_FILE = "data/MIX_OI_daily_CORRECT.csv" 
 SLEEP_SEC   = 0.5   
 
 
