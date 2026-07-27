@@ -23,14 +23,14 @@ reg1 = df_final[df_final.index < '2024-05-17'].copy()
 
 reg1['Доходность_MIX'] = ((reg1['HIGH_MIX'] + reg1['LOW_MIX']) / 2).pct_change()
 reg1['Юань_Лаг1'] = reg1['CLOSE_CNY'].pct_change().shift(1)
-reg1['Нефть_Brent'] = reg1['CLOSE_Brent'].pct_change()
+reg1['S&P500'] = reg1['CLOSE_S&P'].pct_change()
 reg1['Изм_RVI'] = reg1['CLOSE_RVI'].diff()
 reg1['Изм_RGBI'] = reg1['CLOSE_RGBI'].diff()
 reg1['Базис_РТС'] = ((reg1['CLOSE_RI'] - (reg1['CLOSE_RTSI'] * 100)) / (reg1['CLOSE_RTSI'] * 100)) * 100
 reg1['Базис_Лаг4'] = reg1['Базис_РТС'].shift(4)
 
 # Очистка от пустых значений
-факторы = ['Юань_Лаг1', 'Базис_Лаг4', 'Нефть_Brent', 'Изм_RVI', 'Изм_RGBI']
+факторы = ['Юань_Лаг1', 'Базис_Лаг4', 'S&P500', 'Изм_RVI', 'Изм_RGBI']
 данные_модели = reg1[факторы + ['Доходность_MIX']].dropna()
 
 Y = данные_модели['Доходность_MIX']
