@@ -136,9 +136,9 @@ moex-futures-econometrics/
 ├── data/ # Данные
 │ ├── market_data.xlsx # Исходные рыночные данные
 │ ├── MIX_OI_daily_CORRECT.csv # Открытый интерес (парсинг MOEX)
-│ ├── df_final.csv # Собранные цены
-│ └── df_combined.csv # Цены + OI
-│
+│ ├── df_final.csv # Собранные цены (создаются скриптом)
+│ └── df_combined.csv # Цены + OI (создаются скриптом)
+├── images/ # Графики
 ├── scripts/ # Скрипты
 │ ├── 1_fetch_oi.py # Парсинг OI с MOEX
 │ ├── 2_merge_data.py # Сборка цен
@@ -147,9 +147,6 @@ moex-futures-econometrics/
 │ ├── 5_analysis_mode2.py # Регрессия Режим 2 (после 17.05.2024)
 │ ├── 6_rolling_correlation.py # Скользящая корреляция цена–OI
 │ └── 7_basis_analysis.py # Z-Score базиса
-│
-├── notebooks/ # Jupyter Notebooks
-│ └── images/ # Графики
 │
 ├── .gitignore
 ├── LICENSE
