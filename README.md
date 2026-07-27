@@ -98,7 +98,7 @@ T = срок до экспирации (дней)
 ![Зоны премии](notebooks/images/basis_premium.png)
 ![Зоны дисконта](notebooks/images/basis_discount.png)
 
-###  Идентификация аномалий через Z-Score (±1.5σ)
+#### 1.  Идентификация аномалий через Z-Score (±1.5σ)
 
 Abnormal_Basis = F_market - F_theory
 
