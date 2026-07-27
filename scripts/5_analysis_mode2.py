@@ -25,7 +25,7 @@ reg2['RET_TARGET'] = ((reg2['HIGH_MIX'] + reg2['LOW_MIX']) / 2).pct_change()
 # Факторы
 reg2['RGBI_Ret'] = reg2['CLOSE_RGBI'].pct_change()
 reg2['RET_LAG1'] = reg2['RET_TARGET'].shift(1)
-reg2['D_NET_YUR'] = reg2['NET_YUR'].diff()
+reg2['D_NET_YUR'] = reg2['NET_YUR'].diff() / 1_000_000
 reg2['D_RVI'] = reg2['CLOSE_RVI'].diff()
 
 # Список факторов для отчета
