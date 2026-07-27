@@ -21,7 +21,7 @@ plt.rcParams.update({
 
 reg1 = df_final[df_final.index < '2024-05-17'].copy()
 
-reg1['Доходность_MIX'] = ((reg1['HIGH_MIX'] + reg1['LOW_MIX']) + reg1['CLOSE_MX'] / 3).pct_change()
+reg1['Доходность_MIX'] = ((reg1['HIGH_MIX'] + reg1['LOW_MIX']) / 2).pct_change()
 reg1['Юань_Лаг1'] = reg1['CLOSE_CNY'].pct_change().shift(1)
 reg1['Нефть_Brent'] = reg1['CLOSE_Brent'].pct_change()
 reg1['Изм_RVI'] = reg1['CLOSE_RVI'].diff()
