@@ -132,15 +132,26 @@ Z = (Abnormal_Basis - μ) / σ
 ##  Структура репозитория
 
 ```text
-├── data/                           # Сырые датасеты
-├── scripts/                        
-├── notebooks/
-│   ├── images/                     # Графики и визуализации для README
-│   ├── 01_data_prep.ipynb          
-│   ├── 02_regression_regime1.ipynb # OLS-модель Режима 1 + Диагностика
-│   ├── 03_regression_regime2.ipynb # OLS (HC0) Режима 2 + Диагностика
-│   ├── 04_rolling_correlation.ipynb# Скользящие корреляции
-│   └── 05_basis_anomalies.ipynb    # Z-Score базиса и проекция уровней
-├── README.md                       # Документация проекта
-└── requirements.txt                # Зависимости (pandas, statsmodels и др.)
+moex-futures-econometrics/
+├── data/ # Данные
+│ ├── market_data.xlsx # Исходные рыночные данные
+│ ├── MIX_OI_daily_CORRECT.csv # Открытый интерес (парсинг MOEX)
+│ ├── df_final.csv # Собранные цены
+│ └── df_combined.csv # Цены + OI
+│
+├── scripts/ # Скрипты
+│ ├── 1_fetch_oi.py # Парсинг OI с MOEX
+│ ├── 2_merge_data.py # Сборка цен
+│ ├── 3_combine_data.py # Объединение цен + OI
+│ ├── 4_analysis_mode1.py # Регрессия Режим 1 (до 17.05.2024)
+│ ├── 5_analysis_mode2.py # Регрессия Режим 2 (после 17.05.2024)
+│ ├── 6_rolling_correlation.py # Скользящая корреляция цена–OI
+│ └── 7_basis_analysis.py # Z-Score базиса
+│
+├── notebooks/ # Jupyter Notebooks
+│ └── images/ # Графики
+│
+├── .gitignore
+├── LICENSE
+├── README.md
 ```
