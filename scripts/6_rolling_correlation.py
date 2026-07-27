@@ -3,11 +3,11 @@ import pandas as pd
 import numpy as np
 import os
 # Загрузка данных
-df_final = pd.read_csv('data/df_final.csv', parse_dates=['DATE_MIX'])
-df_final.set_index('DATE_MIX', inplace=True)
+df_combined = pd.read_csv('data/df_combined.csv', parse_dates=['DATE_MIX'])
+df_combined.set_index('DATE_MIX', inplace=True)
 
 window_size = 90 # Окно 3 месяца можно месяц или два
-df_plot = df_final[['CLOSE_MX', 'NET_YUR']].copy().dropna()
+df_plot = df_combined[['CLOSE_MX', 'NET_YUR']].copy().dropna()
 df_plot['rolling_corr'] = df_plot['CLOSE_MX'].rolling(window=window_size).corr(df_plot['NET_YUR'])
 
 
