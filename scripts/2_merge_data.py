@@ -3,15 +3,14 @@ import numpy as np
 import os
 
 # --- 1. Настройка путей и загрузка ---
-path = "data"
-file_name = 'market_data.xlsx'
-full_path = os.path.join(path, file_name)
 
+path = "data"
+file_name = "market_data.xlsx"  
+full_path = os.path.join(path, file_name)
 
 df_raw = pd.read_excel(full_path)
 
 # --- 2. Группировка столбцов по инструментам ---
-
 instruments = {
     'USD': ['DATE_USD', 'OPEN_USD', 'HIGH_USD', 'LOW_USD', 'CLOSE_USD'],
     'CNY': ['DATE_CNY', 'OPEN_CNY', 'HIGH_CNY', 'LOW_CNY', 'CLOSE_CNY'],
@@ -23,16 +22,14 @@ instruments = {
     'RTSI': ['DATE_RTSI', 'OPEN_RTSI', 'HIGH_RTSI', 'LOW_RTSI', 'CLOSE_RTSI'],
     'RI': ['DATE_RI', 'OPEN_RI', 'HIGH_RI', 'LOW_RI', 'CLOSE_RI'],
     'RUSFAR_ON': ['DATE_RUSFAR', 'CLOSE_RUSFAR', 'OPEN_RUSFAR', 'HIGH_RUSFAR', 'LOW_RUSFAR', 'VALUE_RUSFAR'],
-    'RUSFAR_1W': ['CLOSE_RUSFAR1W', 'OPEN_RUSFAR1W', 'HIGH_RUSFAR1W', 'LOW_RUSFAR1W', 'VALUE_1W'], # Обычно даты совпадают с ON
+    'RUSFAR_1W': ['CLOSE_RUSFAR1W', 'OPEN_RUSFAR1W', 'HIGH_RUSFAR1W', 'LOW_RUSFAR1W', 'VALUE_1W'],
     'RUSFAR_1M': ['CLOSE_RUSFAR1M', 'OPEN_RUSFAR1M', 'HIGH_RUSFAR1M', 'LOW_RUSFAR1M', 'VALUE_RUSFAR1M'],
     'RUSFAR_3M': ['CLOSE_RUSFAR3M', 'OPEN_RUSFAR3M', 'HIGH_RUSFAR3M', 'LOW_RUSFAR3M', 'VALUE_RUSFAR3M'],
-    'RGBI':['DATE_RGBI', 'OPEN_RGBI', 'HIGH_RGBI', 'LOW_RGBI','CLOSE_RGBI',	'VOL_RGBI'],
+    'RGBI': ['DATE_RGBI', 'OPEN_RGBI', 'HIGH_RGBI', 'LOW_RGBI', 'CLOSE_RGBI', 'VOL_RGBI'],
     'S&P500': ['DATE_S&P', 'CLOSE_S&P']
-
 }
 
-# --- 3. Создание базового датафрейма (Backbone) ---
-# Начинаем с фьючерса MIX
+# --- 3. Создание базового датафрейма 
 df_final = df_raw[['DATE_MIX', 'OPEN_MIX', 'HIGH_MIX', 'LOW_MIX', 'CLOSE_MX', 'VOL_MIX']].copy()
 df_final['DATE_MIX'] = pd.to_datetime(df_final['DATE_MIX'])
 df_final = df_final.dropna(subset=['DATE_MIX'])
@@ -53,14 +50,12 @@ for inst_name, cols in instruments.items():
         df_final = pd.concat([df_final, df_raw[cols]], axis=1)
 
 # --- 5. Финальная очистка ---
-# Удаляем строки, где нет данных по самому фьючерсу
 df_final = df_final.dropna(subset=['CLOSE_MX'])
-
-# Заполняем пропуски в факторах
 df_final = df_final.ffill()
-
-# Индекс по дате для удобства
 df_final = df_final.set_index('DATE_MIX')
 
-
+# --- 6. Сохранение результата ---
+df_final.to_csv('data/df_final.csv')
+print(f"✅ Сохранено {len(df_final)} строк в data/df_final.csv")
+print("\nПервые 5 строк:")
 print(df_final.head())
