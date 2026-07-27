@@ -9,7 +9,7 @@ df_final = pd.read_csv('data/df_final.csv', parse_dates=['DATE_MIX'])
 df_final.set_index('DATE_MIX', inplace=True)
 
 # Загружаем OI данные
-df_oi = pd.read_csv('MIX_OI_daily_CORRECT.csv', parse_dates=['date'])
+df_oi = pd.read_csv('data/MIX_OI_daily_CORRECT.csv', parse_dates=['date'])
 df_oi.columns = df_oi.columns.str.strip().str.lower()
 df_oi.set_index('date', inplace=True)
 
